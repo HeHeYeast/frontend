@@ -1,6 +1,9 @@
 var mymap,cup=10,row=10,column=10,personx=0,persony=0,countdown=60;
 var map=document.getElementsByClassName('gamemap'),rows=Array(row),cell=Array(row);
 var myscore=document.getElementById('score'),mytime=document.getElementById('time');
+var cupsrc='https://s2.loli.net/2022/03/19/aV6Y9PqlZ25hAGU.jpg',
+    personsrc='https://s2.loli.net/2022/03/19/ZJ92DnIhKNqvkBr.jpg',
+    whitesrc='https://s2.loli.net/2022/03/19/xENaAjSIgUboW1h.png';
 
 function myRand(limit) {
     return Math.floor(Math.random()*limit);
@@ -46,15 +49,15 @@ function drawmap() {
             switch(mymap[i][j]) {
                 case 'n':
                     cellclass='emptycell';
-                    nimg.setAttribute('src','file:///C:/Users/27549/Desktop/%E7%AE%A1%E5%95%B8%E9%87%8E/%E5%89%8D%E7%AB%AF%E5%AE%9E%E8%B7%B5/homework3/img/white.png');
+                    nimg.setAttribute('src',whitesrc);
                     break;
                 case 'p':
                     cellclass='person';
-                    nimg.setAttribute('src','file:///C:/Users/27549/Desktop/%E7%AE%A1%E5%95%B8%E9%87%8E/%E5%89%8D%E7%AB%AF%E5%AE%9E%E8%B7%B5/homework3/img/person.jfif');
+                    nimg.setAttribute('src',personsrc);
                     break;
                 case 'c':
                     cellclass='cup';
-                    nimg.setAttribute('src','file:///C:/Users/27549/Desktop/%E7%AE%A1%E5%95%B8%E9%87%8E/%E5%89%8D%E7%AB%AF%E5%AE%9E%E8%B7%B5/homework3/img/cup.jpg');
+                    nimg.setAttribute('src',cupsrc);
                     break;
             }
             cell[i][j].setAttribute('class',cellclass);
@@ -73,15 +76,14 @@ function check() {//在每步移动之后对整体情况检测
     if(mymap[personx][persony]==='c')
         cup--;
     mymap[personx][persony]='p';
-    cell[personx][persony].lastChild.setAttribute('src','file:///C:/Users/27549/Desktop/%E7%AE%A1%E5%95%B8%E9%87%8E/%E5%89%8D%E7%AB%AF%E5%AE%9E%E8%B7%B5/homework3/img/person.jfif');
+    cell[personx][persony].lastChild.setAttribute('src',personsrc);
     myscore.innerText='score:'+(100-10*cup).toString();
-    if(cup===0) alert('Congratulation!');
 }
 
 document.onkeydown=function(event) {
     var e=event||window.event;
     mymap[personx][persony]='n';
-    cell[personx][persony].lastChild.setAttribute('src','file:///C:/Users/27549/Desktop/%E7%AE%A1%E5%95%B8%E9%87%8E/%E5%89%8D%E7%AB%AF%E5%AE%9E%E8%B7%B5/homework3/img/white.png');
+    cell[personx][persony].lastChild.setAttribute('src',whitesrc);
     if(e&&e.keyCode===87) {
         if(personx!=0) personx-=1;
     }
@@ -95,4 +97,5 @@ document.onkeydown=function(event) {
         if(persony!=9) persony+=1;
     }
     check();
+    if(cup===0) alert('Congratulation!');
 }
