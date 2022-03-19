@@ -1,0 +1,32 @@
+.gamemap{
+    
+}
+
+.myrow{
+    height: 30px;
+}
+
+
+.cup{
+    display: inline-block;
+}
+
+.interactbar{
+
+}
+
+.emptycell{
+    display: inline-block;
+}
+
+.person{
+    display: inline-block;
+}
+
+#time{
+
+}
+
+#score{
+
+}
